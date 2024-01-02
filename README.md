@@ -4,7 +4,7 @@ It is a frontend for CryptoCalc web application. It is an app where user can reg
 
 ## Demo
 
-link: https://cryptocalc.vercel.app
+link: https://cryptocalc-frontend.vercel.app
 
 ## API Reference
 

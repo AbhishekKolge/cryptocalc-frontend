@@ -1,30 +1,30 @@
-# Propertyloop Frontend using Next JS
+# CryptoCalc Frontend using Next JS
 
-It is a frontend for Propertyloop web application. It is an app where user can register as tenant or landlord and post or apply for a property.
+It is a frontend for CryptoCalc web application. It is an app where user can register can calculate crypto currency exchange for free.
 
 ## Demo
 
-link: https://propertyloop-frontend.vercel.app/
+link: https://cryptocalc.vercel.app
 
 ## API Reference
 
-https://api.postman.com/collections/17221325-06a0b71e-8c06-4e64-9a19-5be31e337888?access_key=PMAT-01HFSBFCWDDXRMEYPH9H5GYBFS
+https://api.postman.com/collections/17221325-f8a89c90-79fd-4979-9504-8ce17d42aacc?access_key=PMAT-01HK5NAGQ4MBZJN95YZS65J9Z3
 
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://github.com/AbhishekKolge/propertyloop-frontend.git
+  git clone https://github.com/AbhishekKolge/cryptocalc-frontend.git
 ```
 
 Go to the project root directory
 
 ```bash
-  cd propertyloop-frontend
+  cd cryptocalc-frontend
 ```
 
-Change BASE_URL inside next.config.js as per requirement (default is https://propertyloop-backend-production.up.railway.app/api/v1)
+Change BASE_URL inside next.config.js as per requirement (default is https://cryptocalc-backend-production.up.railway.app/api/v1)
 You might face CORS error with default BASE_URL
 
 Install dependencies using NPM

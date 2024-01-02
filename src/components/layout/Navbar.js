@@ -8,28 +8,15 @@ import { usePathname } from 'next/navigation';
 import { Menu } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 
 import { logoutHandler } from '@/features/auth/authAction';
 import { useLogoutMutation } from '@/features/auth/authApiSlice';
@@ -67,7 +54,7 @@ const Navbar = () => {
   return (
     <nav className='w-full fixed top-0 inset-x-0 z-10 flex justify-between items-center bg-white'>
       <h1 className='text-2xl md:text-4xl'>
-        <Link href='/'>Propertyloop</Link>
+        <Link href='/calculator'>CryptoCalc</Link>
       </h1>
       <Sheet open={showSideMenu} onOpenChange={setShowSideMenu}>
         <SheetTrigger asChild>
@@ -76,9 +63,6 @@ const Navbar = () => {
           </Button>
         </SheetTrigger>
         <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Options</SheetTitle>
-          </SheetHeader>
           <div className='grid gap-4 py-4'>
             {auth.isLoggedIn === null &&
               (isAuthPage ? (
@@ -91,7 +75,6 @@ const Navbar = () => {
                   <Skeleton className='h-[40px] w-[40px] md:h-[100px] md:w-[100px] rounded-full' />
                   <Skeleton className='h-8 w-[120px]' />
                   <Skeleton className='h-8 w-[120px]' />
-                  <Skeleton className='h-8 w-full' />
                 </div>
               ))}
 
@@ -108,12 +91,6 @@ const Navbar = () => {
                   </AvatarFallback>
                 </Avatar>
                 <Link href='/user/profile'>Profile</Link>
-                {auth.role === 'landlord' && (
-                  <Link href='/user/property'>My Properties</Link>
-                )}
-                {auth.role === 'tenant' && (
-                  <Link href='/user/application'>My Applications</Link>
-                )}
                 <Button className='w-full' onClick={logoutAccountHandler}>
                   {logoutIsLoading && (
                     <Loader2 className='mr-2 h-4 w-4 animate-spin' />

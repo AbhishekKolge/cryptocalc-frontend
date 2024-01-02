@@ -14,7 +14,7 @@ const useApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: fileData,
       }),
-      invalidatesTags: ['User', 'Properties', 'Property'],
+      invalidatesTags: ['User'],
     }),
     updateProfile: builder.mutation({
       query: (userDetails) => ({
@@ -22,7 +22,7 @@ const useApiSlice = apiSlice.injectEndpoints({
         method: 'PATCH',
         body: userDetails,
       }),
-      invalidatesTags: ['User', 'Properties', 'Property'],
+      invalidatesTags: ['User'],
     }),
     removeProfileImage: builder.mutation({
       query: (profileImageId) => ({
@@ -30,7 +30,7 @@ const useApiSlice = apiSlice.injectEndpoints({
         method: 'DELETE',
         params: { profileImageId },
       }),
-      invalidatesTags: ['User', 'Properties', 'Property'],
+      invalidatesTags: ['User'],
     }),
     deleteAccount: builder.mutation({
       query: () => ({

@@ -15,8 +15,8 @@ if (process.env.ENV !== 'development') {
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Propertyloop',
-  description: 'One stop solution for your property',
+  title: 'CryptoCalc',
+  description: 'Crypto currency exchange calculator',
 };
 
 export default function RootLayout({ children }) {

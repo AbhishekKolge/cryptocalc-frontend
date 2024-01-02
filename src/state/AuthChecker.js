@@ -13,17 +13,19 @@ const AuthChecker = () => {
   const router = useRouter();
   const { isLoggedIn } = useSelector((state) => state.auth);
 
-  const isProtectedPage = pathname.startsWith('/user');
+  const isAuthPage = pathname.startsWith('/auth');
 
   useEffect(() => {
     firstRender && dispatch(checkLoginStatus());
   }, [dispatch, firstRender]);
 
   useEffect(() => {
-    if (isLoggedIn === false && isProtectedPage) {
+    if (isLoggedIn === false && !isAuthPage) {
+      router.replace('/auth/login');
+    } else if (isLoggedIn && isAuthPage) {
       router.replace('/');
     }
-  }, [isLoggedIn, router, isProtectedPage]);
+  }, [isLoggedIn, router, isAuthPage]);
 
   return null;
 };

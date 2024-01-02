@@ -1,15 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
-    BASE_URL: 'https://propertyloop-backend-production.up.railway.app/api/v1',
-    ENV: 'production',
-    ACCESS_TOKEN_EXPIRATION_TIME: '86400000',
+    BASE_URL: 'http://localhost:8000/api/v1',
+    ENV: 'development',
+    ACCESS_TOKEN_EXPIRATION_TIME: '3600000',
     TIME_BUFFER: '300000',
-    TENANT_EMAIL: 'test-tenant@gmail.com',
-    LANDLORD_EMAIL: 'test-landlord@gmail.com',
-    TENANT_PASSWORD: 'Test@123',
-    LANDLORD_PASSWORD: 'Test@123',
+    EMAIL: 'test@gmail.com',
+    PASSWORD: 'Test@123',
+  },
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.coinranking.com',
+      },
+    ],
   },
 };
 

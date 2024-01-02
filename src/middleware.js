@@ -4,11 +4,11 @@ export function middleware(request) {
   const path = request.nextUrl.pathname;
   const searchParams = request.nextUrl.searchParams;
   const isAuthPath = path.startsWith('/auth');
-  const isProtectedPath = path.startsWith('/user');
+  const isProtectedPath = path.startsWith('/calculator');
   const authCookie = request.cookies.get('auth')?.value || '';
 
   if (authCookie && isAuthPath) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL('/calculator', request.url));
   }
 
   if (!authCookie && isProtectedPath) {
@@ -28,8 +28,12 @@ export function middleware(request) {
       return NextResponse.redirect(new URL('/auth/login', request.url));
     }
   }
+
+  if (path === '/') {
+    return NextResponse.redirect(new URL('/calculator', request.url));
+  }
 }
 
 export const config = {
-  matcher: ['/auth/:path*', '/user/:path*'],
+  matcher: ['/:path*'],
 };

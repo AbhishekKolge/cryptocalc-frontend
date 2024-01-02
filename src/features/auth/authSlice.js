@@ -4,7 +4,6 @@ const initialAuthState = {
   accessExpirationTime: null,
   isLoggedIn: null,
   name: null,
-  role: null,
   profileImage: null,
 };
 
@@ -13,18 +12,16 @@ const authSlice = createSlice({
   initialState: initialAuthState,
   reducers: {
     login(state, action) {
-      const { accessExpirationTime, name, role, profileImage } = action.payload;
+      const { accessExpirationTime, name, profileImage } = action.payload;
       state.accessExpirationTime = accessExpirationTime;
       state.isLoggedIn = true;
       state.name = name;
-      state.role = role;
       state.profileImage = profileImage;
     },
     logout(state) {
       state.accessExpirationTime = initialAuthState.accessExpirationTime;
       state.isLoggedIn = false;
       state.name = initialAuthState.name;
-      state.role = initialAuthState.role;
       state.profileImage = initialAuthState.profileImage;
     },
     updateUserInfo(state, action) {

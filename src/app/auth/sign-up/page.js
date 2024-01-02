@@ -46,7 +46,6 @@ const signUpValidationSchema = Yup.object({
     .minSymbols(1, 'Must include 1 special letter')
     .minNumbers(1, 'Must include 1 number letter')
     .required('Required'),
-  role: Yup.string().oneOf(['tenant', 'landlord']).required('Required'),
 });
 
 const SignUp = () => {
@@ -61,7 +60,6 @@ const SignUp = () => {
       name: '',
       email: '',
       password: '',
-      role: '',
     },
     enableReinitialize: true,
     validationSchema: signUpValidationSchema,
@@ -83,22 +81,12 @@ const SignUp = () => {
     },
   });
 
-  const SelectRoleBlurHandler = () => {
-    signUpFormik.setFieldTouched('role', true);
-  };
-
-  const selectRoleChangeHandler = (value) => {
-    signUpFormik.setFieldValue('role', value);
-  };
-
   return (
     <section className='h-full grid justify-center items-center'>
       <Card className='w-[350px] md:w-[450px]'>
         <CardHeader className='text-center'>
           <CardTitle>Create an Account</CardTitle>
-          <CardDescription>
-            The complete solution for your property
-          </CardDescription>
+          <CardDescription>Calculate crypto exchange for free</CardDescription>
         </CardHeader>
         <form noValidate onSubmit={signUpFormik.handleSubmit}>
           <CardContent>
@@ -116,28 +104,6 @@ const SignUp = () => {
                 {!!signUpFormik.touched.name && !!signUpFormik.errors.name && (
                   <p className='text-red-700 text-sm'>
                     {signUpFormik.errors.name}
-                  </p>
-                )}
-              </div>
-              <div className='flex flex-col space-y-1.5'>
-                <Label htmlFor='role'>I am</Label>
-                <Select
-                  id='role'
-                  value={signUpFormik.values.role}
-                  onOpenChange={SelectRoleBlurHandler}
-                  onValueChange={selectRoleChangeHandler}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder='Select' />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value='tenant'>Tenant</SelectItem>
-                    <SelectItem value='landlord'>Landlord</SelectItem>
-                  </SelectContent>
-                </Select>
-                {!!signUpFormik.touched.role && !!signUpFormik.errors.role && (
-                  <p className='text-red-700 text-sm'>
-                    {signUpFormik.errors.role}
                   </p>
                 )}
               </div>

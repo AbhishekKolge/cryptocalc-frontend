@@ -14,7 +14,7 @@ const NotFound = () => {
           {`Sorry, we can't find that page. You'll find lots to explore on the
             home page.`}
         </p>
-        <Link href='/'>Back to Home</Link>
+        <Link href='/calculator'>Back to Home</Link>
       </div>
     </section>
   );

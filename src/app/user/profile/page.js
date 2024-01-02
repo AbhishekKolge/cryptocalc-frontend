@@ -122,9 +122,6 @@ const Profile = () => {
             <CardTitle className='flex items-center justify-between mb-4'>
               My Profile
               <span className='flex items-center gap-2'>
-                <Badge variant='outline' className='capitalize'>
-                  {showMeData?.user?.role}
-                </Badge>
                 <Badge className='bg-green-600 hover:bg-green-600 capitalize'>
                   {showMeData?.user?.isVerified ? 'verified' : 'not verified'}
                 </Badge>

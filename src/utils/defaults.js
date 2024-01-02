@@ -10,7 +10,7 @@ const MAX_FILE_SIZE = 1024 * 1024;
 
 const UNITS = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 10;
 
 const THROTTLE = 5000;
 

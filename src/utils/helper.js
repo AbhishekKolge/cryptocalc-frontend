@@ -61,21 +61,6 @@ const createQueryString = (name, value, searchParams) => {
   return params.toString();
 };
 
-const getShortDescription = (longDescription, maxLength = 50) => {
-  if (longDescription.length <= maxLength) {
-    return longDescription;
-  } else {
-    return `${longDescription.substring(0, maxLength)}...`;
-  }
-};
-
-const formatCurrency = (value) => {
-  return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-  }).format(value);
-};
-
 export {
   omitEmptyKeys,
   omitNullishKeys,
@@ -83,6 +68,4 @@ export {
   validateDropzoneSingleFile,
   getInitials,
   createQueryString,
-  getShortDescription,
-  formatCurrency,
 };

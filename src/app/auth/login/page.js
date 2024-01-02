@@ -77,14 +77,9 @@ const Login = (props) => {
     },
   });
 
-  const setTenantCredentialsHandler = () => {
-    loginFormik.setFieldValue('email', process.env.TENANT_EMAIL);
-    loginFormik.setFieldValue('password', process.env.TENANT_PASSWORD);
-  };
-
-  const setLandlordCredentialsHandler = () => {
-    loginFormik.setFieldValue('email', process.env.LANDLORD_EMAIL);
-    loginFormik.setFieldValue('password', process.env.LANDLORD_PASSWORD);
+  const setTestCredentialsHandler = async () => {
+    await loginFormik.setFieldValue('email', process.env.EMAIL);
+    await loginFormik.setFieldValue('password', process.env.PASSWORD);
   };
 
   return (
@@ -92,9 +87,7 @@ const Login = (props) => {
       <Card className='w-[350px] md:w-[450px]'>
         <CardHeader className='text-center'>
           <CardTitle>Sign In</CardTitle>
-          <CardDescription>
-            The complete solution for your property
-          </CardDescription>
+          <CardDescription>Calculate crypto exchange for free</CardDescription>
         </CardHeader>
         <form noValidate onSubmit={loginFormik.handleSubmit}>
           <CardContent>
@@ -146,25 +139,15 @@ const Login = (props) => {
             <Button
               type='button'
               variant='outline'
-              onClick={setTenantCredentialsHandler}
+              onClick={setTestCredentialsHandler}
               disabled={loginIsLoading || loginIsSuccess}
             >
               {loginIsLoading && (
                 <Loader2 className='mr-2 h-4 w-4 animate-spin' />
               )}
-              Set Tenant
+              Set Test Cred
             </Button>
-            <Button
-              type='button'
-              variant='outline'
-              onClick={setLandlordCredentialsHandler}
-              disabled={loginIsLoading || loginIsSuccess}
-            >
-              {loginIsLoading && (
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-              )}
-              Set Landlord
-            </Button>
+
             <div className='relative'>
               <div className='absolute inset-0 flex items-center'>
                 <span className='w-full border-t' />

@@ -30,9 +30,9 @@ import { DEBOUNCE_TIME } from '@/utils/defaults';
 
 const exchangeValidationSchema = Yup.object({
   symbol: Yup.string().trim().required('Required'),
-  requestFrom: Yup.string().trim().required('Required'),
+  requestFrom: Yup.string().trim(),
   base: Yup.string().trim().required('Required'),
-  amount: Yup.number(),
+  amount: Yup.number().nullable(true),
 });
 
 const Calculator = () => {
@@ -105,6 +105,21 @@ const Calculator = () => {
     _.debounce(exchangeFormik.handleSubmit, DEBOUNCE_TIME),
     []
   );
+
+  const selectCoinHandler = (value) => {
+    coinSelectHandler(value);
+    exchangeFormik.setFieldValue('requestFrom', '');
+    exchangeFormik.setFieldValue('amount', null);
+    currencyInputRef.current.value = '';
+    coinInputRef.current.value = '';
+  };
+  const selectCurrencyHandler = (value) => {
+    currencySelectHandler(value);
+    exchangeFormik.setFieldValue('requestFrom', '');
+    exchangeFormik.setFieldValue('amount', null);
+    currencyInputRef.current.value = '';
+    coinInputRef.current.value = '';
+  };
 
   useEffect(() => {
     if (coinState.initialFetch) {
@@ -196,7 +211,7 @@ const Calculator = () => {
                     value={coinFilterState.search}
                     reset={resetCoinFilterHandler}
                     onLoadMore={nextCoinPageHandler}
-                    onSelect={coinSelectHandler}
+                    onSelect={selectCoinHandler}
                     selected={coinState.selected}
                   />
                 </div>
@@ -222,7 +237,7 @@ const Calculator = () => {
                     value={currencyFilterState.search}
                     reset={resetCurrencyFilterHandler}
                     onLoadMore={nextCurrencyPageHandler}
-                    onSelect={currencySelectHandler}
+                    onSelect={selectCurrencyHandler}
                     selected={currencyState.selected}
                   />
                 </div>

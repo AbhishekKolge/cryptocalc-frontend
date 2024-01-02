@@ -71,12 +71,11 @@ const Calculator = () => {
 
   const exchangeFormik = useFormik({
     initialValues: {
-      symbol: coinState.selected?.symbol || '',
+      symbol: '',
       amount: null,
       requestFrom: '',
-      base: currencyState.selected?.symbol || '',
+      base: '',
     },
-    enableReinitialize: true,
     validationSchema: exchangeValidationSchema,
     onSubmit: (values) => {
       if (!values.amount) {
@@ -107,18 +106,29 @@ const Calculator = () => {
   );
 
   const selectCoinHandler = (value) => {
+    const { symbol, requestFrom, amount } = exchangeFormik.values;
+    const prevSymbol = symbol;
+    exchangeFormik.setFieldValue('symbol', value.symbol);
+    if (amount) {
+      if (prevSymbol === requestFrom) {
+        exchangeFormik.setFieldValue('requestFrom', value.symbol);
+      }
+      exchangeFormik.submitForm();
+    }
     coinSelectHandler(value);
-    exchangeFormik.setFieldValue('requestFrom', '');
-    exchangeFormik.setFieldValue('amount', null);
-    currencyInputRef.current.value = '';
-    coinInputRef.current.value = '';
   };
+
   const selectCurrencyHandler = (value) => {
+    const { base, requestFrom, amount } = exchangeFormik.values;
+    const prevBase = base;
+    exchangeFormik.setFieldValue('base', value.symbol);
+    if (amount) {
+      if (prevBase === requestFrom) {
+        exchangeFormik.setFieldValue('requestFrom', value.symbol);
+      }
+      exchangeFormik.submitForm();
+    }
     currencySelectHandler(value);
-    exchangeFormik.setFieldValue('requestFrom', '');
-    exchangeFormik.setFieldValue('amount', null);
-    currencyInputRef.current.value = '';
-    coinInputRef.current.value = '';
   };
 
   useEffect(() => {
@@ -131,6 +141,9 @@ const Calculator = () => {
             data: data.result,
             totalPages: data.totalPages,
           });
+          if (!exchangeFormik.values.symbol) {
+            exchangeFormik.setFieldValue('symbol', data.result[0].symbol);
+          }
         })
         .catch((error) => {
           if (error.data?.msg) {
@@ -152,6 +165,9 @@ const Calculator = () => {
             data: data.result,
             totalPages: data.totalPages,
           });
+          if (!exchangeFormik.values.base) {
+            exchangeFormik.setFieldValue('base', data.result[0].symbol);
+          }
         })
         .catch((error) => {
           if (error.data?.msg) {
@@ -165,17 +181,17 @@ const Calculator = () => {
 
   const coinAmountHandler = (e) => {
     const amount = e.target.value;
-    exchangeFormik.setFieldValue('requestFrom', exchangeFormik.values.symbol);
-    exchangeFormik.setFieldValue('amount', +amount);
     currencyInputRef.current.value = '';
+    exchangeFormik.setFieldValue('requestFrom', exchangeFormik.values.symbol);
+    exchangeFormik.setFieldValue('amount', amount ? +amount : null);
     amount && debouncedExchangeSubmit();
   };
 
   const currencyAmountHandler = (e) => {
     const amount = e.target.value;
-    exchangeFormik.setFieldValue('requestFrom', exchangeFormik.values.base);
-    exchangeFormik.setFieldValue('amount', +amount);
     coinInputRef.current.value = '';
+    exchangeFormik.setFieldValue('requestFrom', exchangeFormik.values.base);
+    exchangeFormik.setFieldValue('amount', amount ? +amount : null);
     amount && debouncedExchangeSubmit();
   };
 
@@ -195,8 +211,8 @@ const Calculator = () => {
                 <div className='flex w-full items-center space-x-2'>
                   <Input
                     disabled={
-                      !coinState.selected ||
-                      !currencyState.selected ||
+                      !exchangeFormik.values.symbol ||
+                      !exchangeFormik.values.base ||
                       exchangeIsLoading
                     }
                     type='number'
@@ -221,8 +237,8 @@ const Calculator = () => {
                 <div className='flex w-full items-center space-x-2'>
                   <Input
                     disabled={
-                      !coinState.selected ||
-                      !currencyState.selected ||
+                      !exchangeFormik.values.symbol ||
+                      !exchangeFormik.values.base ||
                       exchangeIsLoading
                     }
                     type='number'

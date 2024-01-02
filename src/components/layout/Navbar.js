@@ -72,7 +72,7 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div className='flex flex-col items-center gap-5'>
-                  <Skeleton className='h-[40px] w-[40px] md:h-[100px] md:w-[100px] rounded-full' />
+                  <Skeleton className='h-[100px] w-[100px] rounded-full' />
                   <Skeleton className='h-8 w-[120px]' />
                   <Skeleton className='h-8 w-[120px]' />
                 </div>
@@ -80,7 +80,7 @@ const Navbar = () => {
 
             {auth.isLoggedIn ? (
               <div className='flex flex-col items-center gap-5'>
-                <Avatar className='md:h-[100px] md:w-[100px]'>
+                <Avatar className='h-[100px] w-[100px]'>
                   <AvatarImage
                     className='object-cover '
                     src={auth.profileImage}

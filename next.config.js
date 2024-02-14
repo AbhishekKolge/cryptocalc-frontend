@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   env: {
-    BASE_URL: 'https://cryptocalc-backend-production.up.railway.app/api/v1',
+    BASE_URL: 'https://crypto-calc-server.onrender.com/api/v1',
     ENV: 'production',
     ACCESS_TOKEN_EXPIRATION_TIME: '3600000',
     TIME_BUFFER: '300000',

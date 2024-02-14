@@ -53,7 +53,7 @@ const Navbar = () => {
 
   return (
     <nav className='w-full fixed top-0 inset-x-0 z-10 flex justify-between items-center bg-white'>
-      <h1 className='text-2xl md:text-4xl'>
+      <h1 className='text-2xl text-primary md:text-4xl'>
         <Link href='/calculator'>CryptoCalc</Link>
       </h1>
       <Sheet open={showSideMenu} onOpenChange={setShowSideMenu}>
